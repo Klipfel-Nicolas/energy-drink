@@ -25,14 +25,17 @@ export default class Renderer {
             alpha: true
         })
 
+        
+        this.renderer.physicallyCorrectLights = true
+        this.renderer.outputEncoding = THREE.sRGBEncoding
+        this.renderer.toneMapping = THREE.ACESFilmicToneMapping
+        this.renderer.toneMappingExposure = 3
+        this.renderer.shadowMap.enabled = true
+        this.renderer.shadowMapSoft = true;
+        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
         this.renderer.setSize(this.sizes.width, this.sizes.height)
         this.renderer.setPixelRatio(this.sizes.pixelRatio)
-        this.renderer.physicallyCorrectLights = true
-        this.renderer.outputEncoding = THREE.sRGBEncoding;
-        this.renderer.toneMapping = THREE.ACESFilmicToneMapping
-        this.renderer.toneMappingExposure = 1
-        this.renderer.shadowMap.enabled = true
-        this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
         // Debug
         if(this.debug.active) {

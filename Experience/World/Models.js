@@ -26,9 +26,9 @@ export default class Models {
             
             // Position
             this.debugPositionModel = this.debug.debugFolderModel.addFolder('position')
-            this.debugPositionModel.add(this.model.position, 'x').min(- 25).max(50).step(1).name('pos-X').listen();
-            this.debugPositionModel.add(this.model.position, 'y').min(- 25).max(50).step(1).name('pos-Y').listen();
-            this.debugPositionModel.add(this.model.position, 'z').min(- 25).max(50).step(1).name('pos-Z').listen();
+            this.debugPositionModel.add(this.model.position, 'x').min(- 10).max(10).step(.1).name('pos-X').listen();
+            this.debugPositionModel.add(this.model.position, 'y').min(- 10).max(10).step(.1).name('pos-Y').listen();
+            this.debugPositionModel.add(this.model.position, 'z').min(- 10).max(10).step(.1).name('pos-Z').listen();
             
             // Rotation
             this.debugRotationModel = this.debug.debugFolderModel.addFolder('rotation')
@@ -38,9 +38,9 @@ export default class Models {
 
             // Scale
             this.debugScaleModel = this.debug.debugFolderModel.addFolder('scale')
-            this.debugScaleModel.add(this.model.scale, 'x').min(0).max(.1).step(.001).name('sca-X').listen();
-            this.debugScaleModel.add(this.model.scale, 'y').min(0).max(.1).step(.001).name('sca-Y').listen();
-            this.debugScaleModel.add(this.model.scale, 'z').min(0).max(.1).step(.001).name('sca-Z').listen();
+            this.debugScaleModel.add(this.model.scale, 'x').min(0).max(2).step(.001).name('sca-X').listen();
+            this.debugScaleModel.add(this.model.scale, 'y').min(0).max(2).step(.001).name('sca-Y').listen();
+            this.debugScaleModel.add(this.model.scale, 'z').min(0).max(2).step(.001).name('sca-Z').listen();
         }
     }
 }

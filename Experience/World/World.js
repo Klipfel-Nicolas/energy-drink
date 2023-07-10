@@ -4,7 +4,7 @@ import { EventEmitter } from "events";
 
 import Environment from '../Scene/Environement';
 import Models from './Models';
-import Objects from './Objects';
+import ShadowFloorCustom from './ShadowFloorCustom';
 
 
 export default class World extends EventEmitter {
@@ -17,17 +17,20 @@ export default class World extends EventEmitter {
         this.canvas = this.experience.canvas;
         this.camera = this.experience.camera;
         this.resources = this.experience.resources;
-        
+        this.debug = this.experience.debug;
+
         // Start world (on ressource ready)
         this.resources.on("ready", ()=> {
             this.environment = new Environment();
 
             // Floor
-            this.setFloor(50, 50, 0xffffff) 
+            this.customShadowedFloor = new ShadowFloorCustom();
 
             // Monster Zero
             this.monsterZero = new Models(this.resources.items.monster_zero.scene);
-     
+            this.monsterZero.model.position.y = -1.5;
+            this.monsterZero.model.rotation.z = -.3;
+
             this.emit("worldready");
         }); 
         
@@ -41,13 +44,25 @@ export default class World extends EventEmitter {
      */
     setFloor(geometryX, geometryZ, color) {
         const geometry = new THREE.PlaneGeometry(geometryX, geometryZ);
-        const material = new THREE.MeshStandardMaterial( {color: color, side: THREE.DoubleSide} );
+        const material = new THREE.MeshStandardMaterial( {
+            color: color,
+            side: THREE.DoubleSide
+        } );
+        
         this.plane = new THREE.Mesh( geometry, material );
         this.plane.receiveShadow = true;
         this.plane.castShadow = false;
     
-        this.plane.rotateX(Math.PI / 180 * 90);
+        
         this.scene.add( this.plane );
+        this.plane.position.z = -2;
+
+        // Position
+        this.debugFloor = this.debug.debugFolderObject.addFolder(`floor`)
+
+        this.debugFloor.add(this.plane.position, 'x').min(- 25).max(50).step(.1).name('object-X').listen();
+        this.debugFloor.add(this.plane.position, 'y').min(- 25).max(50).step(.1).name('object-Y').listen();
+        this.debugFloor.add(this.plane.position, 'z').min(- 25).max(50).step(.1).name('object-Z').listen();
     }
 
     //RESIZE
@@ -57,10 +72,8 @@ export default class World extends EventEmitter {
     //UPDATE
     update() {
         
-        if(this.cube) {
-            this.cube.object.rotation.x -= .001 * 2;
-            this.cube.object.rotation.y -= .001 * 3;
-            this.cube.object.rotation.z -= .001 * 4;
+        if(this.customShadowedFloor) {
+            this.customShadowedFloor.update();
         }
     }
 }

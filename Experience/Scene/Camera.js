@@ -10,7 +10,7 @@ export default class Camera {
         this.canvas = this.experience.canvas;
         this.debug = this.experience.debug;
 
-        this.createPerspectiveCamera(0, 4, 10)
+        this.createPerspectiveCamera(0, 0, 5)
         this.setOrbitControls(this.canvas)
 
         this.createGridHelper(50, 50, 'floorGrid', 0xffffff, 'grey', 6 )
@@ -33,9 +33,9 @@ export default class Camera {
             this.debugPerspectiveCamera = this.debug.debugFolderCamera.addFolder('perspective')
             this.debugPositionPerspectiveCamera = this.debugPerspectiveCamera.addFolder('position')
 
-            this.debugPositionPerspectiveCamera.add(this.perspectiveCamera.position, 'x').min(- 25).max(50).step(.5).name('camera-X')
-            this.debugPositionPerspectiveCamera.add(this.perspectiveCamera.position, 'y').min(- 25).max(50).step(.5).name('camera-Y')
-            this.debugPositionPerspectiveCamera.add(this.perspectiveCamera.position, 'z').min(- 25).max(50).step(.5).name('camera-Z')
+            this.debugPositionPerspectiveCamera.add(this.perspectiveCamera.position, 'x').min(- 10).max(10).step(.1).name('camera-X')
+            this.debugPositionPerspectiveCamera.add(this.perspectiveCamera.position, 'y').min(- 10).max(10).step(.1).name('camera-Y')
+            this.debugPositionPerspectiveCamera.add(this.perspectiveCamera.position, 'z').min(- 10).max(10).step(.1).name('camera-Z')
         }        
     }
 
@@ -156,7 +156,7 @@ export default class Camera {
 
     //UPDATE
     update() {
-        this.controls.update(); 
+        //this.controls.update(); 
 
         /* this.helper.matrixWorldNeedsUpdate = true;
         this.helper.update()

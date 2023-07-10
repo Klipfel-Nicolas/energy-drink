@@ -43,7 +43,6 @@ export default class Objects {
             this.debugObject = this.debug.debugFolderObject.addFolder(`${this.debugName}`)
 
             // Position
-
             this.debugPositionObject = this.debugObject.addFolder(`${this.debugName} position`)
             this.debugPositionObject.add(this.object.position, 'x').min(- 25).max(50).step(.1).name('object-X').listen();
             this.debugPositionObject.add(this.object.position, 'y').min(- 25).max(50).step(.1).name('object-Y').listen();

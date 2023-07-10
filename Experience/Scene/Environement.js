@@ -9,8 +9,9 @@ export default class Environment {
         this.scene = this.experience.scene
         this.debug = this.experience.debug
 
-        this.addSunlight("#fff", 2, 2, 5, 3, "-1", true)
+        this.addSunlight("#fff", 1, -2.8, 1.3, 3.2, "-1", true)
         this.addAmbiantLight(0xcccccc, .5)
+        this.addBackgroundScene('#fff')
     }
 
     /**
@@ -27,13 +28,11 @@ export default class Environment {
         this.sunLight = new THREE.DirectionalLight(color, intensity);
         this.sunLight.castShadow = castShadow; 
 
-        this.sunLight.shadow.mapSize = new THREE.Vector2(2048 * 2, 2048 * 2);
-        this.sunLight.shadow.camera.bottom = -4;
-        this.sunLight.shadow.camera.left = - 10;
-        this.sunLight.shadow.camera.right = 10;
-        this.sunLight.shadow.camera.near = 0.1;
-        this.sunLight.shadow.camera.far = 60;
-        this.sunLight.shadow.bias= -0.001;
+        this.sunLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
+        this.sunLight.shadow.camera.far = 20;
+        this.sunLight.shadow.bias= -0.05;
+
+        
 
         this.sunLight.position.set(positionX, positionY, positionZ);
         
@@ -67,9 +66,9 @@ export default class Environment {
 
             //Position
             this.debugPostionSunFolder = this.debugSunFolder.addFolder('position')
-            this.debugPostionSunFolder.add(this.sunLight.position, 'x').min(- 25).max(150).step(1).name('sunLight-X').listen()
-            this.debugPostionSunFolder.add(this.sunLight.position, 'y').min(- 25).max(150).step(1).name('sunLight-Y').listen()
-            this.debugPostionSunFolder.add(this.sunLight.position, 'z').min(- 25).max(150).step(1).name('sunLight-Z').listen()
+            this.debugPostionSunFolder.add(this.sunLight.position, 'x').min(- 10).max(10).step(.1).name('sunLight-X').listen()
+            this.debugPostionSunFolder.add(this.sunLight.position, 'y').min(- 10).max(10).step(.1).name('sunLight-Y').listen()
+            this.debugPostionSunFolder.add(this.sunLight.position, 'z').min(- 10).max(10).step(.1).name('sunLight-Z').listen()
             
             
             //Shadow
