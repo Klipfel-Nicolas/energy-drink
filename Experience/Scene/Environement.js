@@ -9,9 +9,6 @@ export default class Environment {
         this.scene = this.experience.scene
         this.debug = this.experience.debug
 
-        this.addSunlight("#fff", 1, -2.8, 1.3, 3.2, "-1", true)
-        this.addAmbiantLight(0xcccccc, .5)
-        this.addBackgroundScene('#fff')
     }
 
     /**
@@ -23,7 +20,7 @@ export default class Environment {
      * @param {Number} positionZ
      * @param {String} debugIndex
      */
-    addSunlight(color, intensity, positionX, positionY, positionZ, debugIndex, castShadow) {
+    addSunlight(scene, color, intensity, positionX, positionY, positionZ, debugIndex, castShadow) {
         //Directional Light
         this.sunLight = new THREE.DirectionalLight(color, intensity);
         this.sunLight.castShadow = castShadow; 
@@ -36,7 +33,8 @@ export default class Environment {
 
         this.sunLight.position.set(positionX, positionY, positionZ);
         
-       this.scene.add(this.sunLight);
+       //this.scene.add(this.sunLight);
+       scene.add(this.sunLight)
         
        //Add light to the camera
        //this.experience.camera.perspectiveCamera.add(this.sunLight);
@@ -130,15 +128,14 @@ export default class Environment {
      * @param {String} color 
      * @param {Number} intensity 
      */
-    addAmbiantLight(color, intensity) {
+    addAmbiantLight(scene, color, intensity, debugName) {
         this.ambiantLight = new THREE.AmbientLight( color, intensity )
-        this.experience.camera.perspectiveCamera.add(this.ambiantLight)
+        scene.add(this.ambiantLight)
 
-        
 
         //Debug
         if(this.debug.active) {
-            this.debugAmbientFolder = this.debug.debugFolderLight.addFolder('ambiant')
+            this.debugAmbientFolder = this.debug.debugFolderLight.addFolder(`${debugName}`)
             
             let ambiantColor = {color: color}
             this.debugAmbientFolder.addColor(ambiantColor, 'color').onChange(()=>this.ambiantLight.color.set(ambiantColor.color));

@@ -22,3 +22,15 @@
   font-family: $font-main-regular;
   src: url('../../assets/fonts/bigjonh/BigJohnPRO-Regular.woff') format('woff');
 }
+
+//Bold
+@font-face {
+  font-family: $font-special-bold;
+  src: url('../../assets/fonts/bigjonh/BigJohnPRO-Bold.woff') format('woff');
+}
+
+//Odachi
+@font-face {
+  font-family: $font-special-odachi;
+  src: url('../../assets/fonts/odachi/Odachi.otf') format('woff');
+}

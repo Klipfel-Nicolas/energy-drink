@@ -40,7 +40,6 @@ export default class Ressources extends EventEmitter{
         for(const asset of this.assets) {
             if(asset.type === "glbModel") {
                 this.loaders.gltfLoader.load(asset.path, (file) => {
-                    console.log(file)
                     this.singleAssetLoaded(asset, file);
                 })
             }

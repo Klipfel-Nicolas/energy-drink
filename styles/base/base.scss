@@ -5,13 +5,15 @@
   user-select: none
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: $font-main-regular;
-  color: $white-1;
-  background: $grey-1;
   min-width: 100vw;
   min-height: 100vh;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 a {

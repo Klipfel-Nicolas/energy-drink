@@ -29,7 +29,7 @@ export default class Renderer {
         this.renderer.physicallyCorrectLights = true
         this.renderer.outputEncoding = THREE.sRGBEncoding
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping
-        this.renderer.toneMappingExposure = 3
+        this.renderer.toneMappingExposure = 4
         this.renderer.shadowMap.enabled = true
         this.renderer.shadowMapSoft = true;
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
@@ -63,8 +63,8 @@ export default class Renderer {
 
     //UPDATE
     update() {
-        this.renderer.setViewport(0, 0, this.sizes.width, this.sizes.height)
-        this.renderer.render(this.scene, this.activeCamera);
+        /* this.renderer.setViewport(0, 0, this.sizes.width, this.sizes.height)
+        this.renderer.render(this.scene, this.activeCamera); */
         
         //Second screen
         /*this.renderer.setScissorTest(true)

@@ -6,6 +6,7 @@ import { VerticalBlurShader } from 'three/addons/shaders/VerticalBlurShader.js';
 
 export default class ShadowFloorCustom {
     constructor() {
+
         //Experience
         this.experience = new Experience();
         this.scene = this.experience.scene;
@@ -20,7 +21,7 @@ export default class ShadowFloorCustom {
             },
             cameraHeight: 3,
             darkness: 10,
-            blur: 1.5,
+            blur: 2.8,
             shadowOpacity: 1,
             showCameraHelper: false
         }
@@ -30,7 +31,7 @@ export default class ShadowFloorCustom {
         this.shadowGroup.position.y = this.shadow_params.groupPosition;
 		this.scene.add( this.shadowGroup );
 
-        
+
         // Plane Geometry
         this.planeGeometry = new THREE.PlaneGeometry( this.shadow_params.planeSize.width, this.shadow_params.planeSize.height ).rotateX( Math.PI / 2 );
 
@@ -43,6 +44,8 @@ export default class ShadowFloorCustom {
         this.renderTargetBlur.texture.generateMipmaps = false;
 
         this.addPlane();
+        this.floor.position.x = 1.4;
+
         this.addBlurPlane();
         //this.addFillPlane();
         this.addShadowCamera();
@@ -50,7 +53,6 @@ export default class ShadowFloorCustom {
         this.createBlurMaterial();
 
         this.addShadowDebug();
-        console.log(this.shadowCamera)
     }
 
     /**
@@ -135,7 +137,6 @@ export default class ShadowFloorCustom {
                     'gl_FragColor = vec4( vec3( 0.0 ), ( 1.0 - fragCoordZ ) * darkness );'
                 )}
             `;
-
         }
 
         this.depthMaterial.depthTest = false;
@@ -185,6 +186,10 @@ export default class ShadowFloorCustom {
             this.debugShadow = this.debug.debugFolderObject.addFolder('shadowFloor');
 
             this.debugShadow.add( this.shadow_params, 'blur').min(0).max(10).step(.1).name('blur').listen();
+            
+            this.debugShadow.add( this.floor.position, 'x').min(-10).max(10).step(.1).name('floor x').listen();
+            this.debugShadow.add( this.floor.position, 'y').min(-10).max(10).step(.1).name('floor y').listen();
+            this.debugShadow.add( this.floor.position, 'z').min(-10).max(10).step(.1).name('floor z').listen();
 
             this.debugShadow.add(this.shadow_params, 'darkness').min(0).max(10).step(.1).name('darkness').listen().onChange(() => {
                 this.depthMaterial.userData.darkness.value = this.shadow_params.darkness;
@@ -194,14 +199,13 @@ export default class ShadowFloorCustom {
                 this.floor.material.opacity = this.shadow_params.shadowOpacity;
             } );
 
-            this.debugShadow.add( this.shadow_params, 'groupPosition').min(-10).max(10).step(.1).name('floor Y').listen().onChange(() => {
+            this.debugShadow.add( this.shadow_params, 'groupPosition').min(-10).max(10).step(.1).name('Groupe Y').listen().onChange(() => {
                 this.shadowGroup.position.y = this.shadow_params.groupPosition;
             } );
 
             this.debugShadow.add( this.shadow_params, 'cameraHeight').min(0).max(10).step(.1).name('camera height').listen().onChange(() => {
                 this.shadowCamera.far = this.shadow_params.cameraHeight;
-                console.log(this.shadowCamera)
-                this.shadowCamera.updateProjectionMatrix ()
+                this.shadowCamera.updateProjectionMatrix()
             } );
 
             this.debugShadow.add( this.shadow_params, 'showCameraHelper', true ).onChange( () => {
