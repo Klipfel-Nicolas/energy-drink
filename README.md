@@ -1,5 +1,9 @@
 # Three.js Energy drinks model site
 
+## Improve
+- Find a way to avoid time before snaping section on scroll (look BackUp folder)
+- Handle resize and mobile
+
 ## Setup
 Run this followed commands:
 

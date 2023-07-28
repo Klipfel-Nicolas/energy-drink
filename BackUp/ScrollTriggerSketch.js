@@ -17,22 +17,77 @@ export default class ScrollTriggerSketch extends EventEmitter {
         this.views = views
 
         this.PI = Math.PI;
-
-        this.scrollAnimation = {
-            isAnimate: false,
-            currentSection: 0,
-        }
-
-        //Listen wheelEvent for scrollTO
-        window.addEventListener('wheel', (e) => {
-            if(!this.scrollAnimation.isAnimate) {
-                console.log('in on whele')
-                this.onWheel(e)
-            }
-        } );
-
+       
     }
 
+    goToSection(i, anim) {
+        gsap.to(window, {
+          scrollTo: {y: i*innerHeight, autoKill: false},
+          duration: 1
+        });
+        
+        if(anim) {
+          anim.restart();
+        }
+    }
+
+    handleSection(section, tl) {
+
+    
+
+        if(section == 1) {
+            tl.to(this.models.rotation, {x: 0, ease: "power2.out" }, section)
+            tl.to(this.models.rotation, {y: Math.PI * 2 + .5, ease: "power1.in"}, section)
+            tl.to(this.models.rotation, {z: 0 , ease: "power2.out"}, section)
+            
+            tl.to(this.models.position, {x: -2/* , ease: "power2.in" */}, section)
+            tl.to(this.models.position, {y: -2/* , ease: "power2.in" */}, section)
+            tl.to(this.models.position, {z: 0/* , ease: "power2.in" */}, section)
+        
+            tl.to(this.cameras.position, {y: 0/* , ease: "power2.in" */}, section)
+            tl.to(this.cameras.position, {z:5.5/* , ease: "power2.in" */}, section)
+            
+            tl.to(this.shadow.position, {x:0/* , ease: "power2.in" */}, section)
+        }
+        
+        if(section == 2) {
+        
+            //Section 2
+            tl.to(this.models.position, {y: 0 , ease: "power2.out" }, section)
+            tl.to(this.models.position, {z: .9, ease: "power2.in"}, section)
+            tl.to(this.models.position, {x: .3/**/ , ease: "power2.in" }, section)
+        
+            tl.to(this.models.rotation, {x: -.3, ease: "power1.out"}, section)
+            tl.to(this.models.rotation, {z: -.2, ease: "power2.in"}, section)
+        }
+        
+        if(section == 3) {
+        
+            //Section 3
+            tl.to(this.models.position, {y: -2, ease: "power1.in" }, section)
+            tl.to(this.models.position, {x: -.3/* , ease: "power2.in" */}, section)
+            tl.to(this.models.position, {z: 1.4, ease: "power2.in"}, section)
+            
+            tl.to(this.models.rotation, {y: 3.1, ease: "power1.in"}, section)
+            tl.to(this.models.rotation, {x: 0, ease: "power1.out"}, section)
+            tl.to(this.models.rotation, {z: 0, ease: "power1.out"}, section)
+        }
+        
+        if(section == 4) {
+            //Section 4
+            tl.to(this.models.rotation, {y: 0, ease: "power1.in"}, section)
+        }
+        
+        if(section == 5) {
+            //Section 5
+            tl.to(this.views[1], {height: 1, ease: 'linear'}, section)
+        
+        }
+    }
+
+    /**
+     * Prepare animation
+     */
     setupAnimation() {
 
         //Only for array (multiple items)
@@ -48,6 +103,9 @@ export default class ScrollTriggerSketch extends EventEmitter {
         gsap.matchMedia({"(prefers-reduced-motion: no-preference)": this.desktopAnimation()})
     }
 
+    /**
+     * Desktop scrollTrigger
+     */
     desktopAnimation() {
         let section = 0;
 
@@ -57,7 +115,7 @@ export default class ScrollTriggerSketch extends EventEmitter {
                 ease: "power2.inOut"
             },
             scrollTrigger: {
-                trigger: ".page",
+                trigger: "#slidesContainer",
                 start: "top top",
                 end: "bottom bottom",
                 scrub: .5, //Smoother animation
@@ -80,6 +138,8 @@ export default class ScrollTriggerSketch extends EventEmitter {
         tl.to(this.cameras.position, {z:5.5/* , ease: "power2.in" */}, section)
         
         tl.to(this.shadow.position, {x:0/* , ease: "power2.in" */}, section)
+        
+
 
         //Section 2
         section += 1
@@ -89,51 +149,37 @@ export default class ScrollTriggerSketch extends EventEmitter {
 
         tl.to(this.models.rotation, {x: -.3, ease: "power1.out"}, section)
         tl.to(this.models.rotation, {z: -.2, ease: "power2.in"}, section)
+
         
+    
+
         //Section 3
-         section += 1
-        tl.to(this.models.position, {y: -2, ease: "power1.in"}, section)
-        tl.to(this.models.position, {x: -.3/* , ease: "power2.in" */ }, section)
+        section += 1
+        tl.to(this.models.position, {y: -2, ease: "power1.in" }, section)
+        tl.to(this.models.position, {x: -.3/* , ease: "power2.in" */}, section)
         tl.to(this.models.position, {z: 1.4, ease: "power2.in"}, section)
         
         tl.to(this.models.rotation, {y: 3.1, ease: "power1.in"}, section)
         tl.to(this.models.rotation, {x: 0, ease: "power1.out"}, section)
         tl.to(this.models.rotation, {z: 0, ease: "power1.out"}, section)
         
+        
+    
         //Section 4
         section += 1
         tl.to(this.models.rotation, {y: 0, ease: "power1.in"}, section)
         
+
         //Section 5
         section += 1
         tl.to(this.views[1], {height: 1, ease: 'linear'}, section)
-    }
 
+        
+    }
 
 
     //RESIZE
     resize() {
-    }
-
-    onWheel(e) {
-        if(this.scrollAnimation.isAnimate) return;
-        
-        this.scrollAnimation.isAnimate = true;
-        
-        if(e.deltaY > 0 && this.scrollAnimation.currentSection < 5) this.scrollAnimation.currentSection += 1;
-        if(e.deltaY < 0 && this.scrollAnimation.currentSection > 0) this.scrollAnimation.currentSection -= 1;
-        
-        gsap.to(
-            window, 
-            { 
-                duration: 1, 
-                scrollTo:`#section${this.scrollAnimation.currentSection}`, 
-                onComplete: () => {
-                    console.log(this.scrollAnimation.isAnimate)
-                    this.scrollAnimation.isAnimate = false;  
-                } 
-            });
-        
     }
 
     //UPDATE

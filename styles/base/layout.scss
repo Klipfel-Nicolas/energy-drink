@@ -1,3 +1,7 @@
+body {
+    background-color: #e0e5eb;
+}
+
 .webgl {
     z-index: 2;
     position: fixed;
@@ -23,12 +27,29 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
     width: 100%;
-    font-family: $font-main-bold;
     font-size: 20vh;
     letter-spacing: 1.3rem;
     text-align: center;
-    color: rgb(187, 205, 205);
+    color: #dadede;
     opacity: .3;
+    text-shadow: -7px -3px 7px rgba($color: #ffffff, $alpha: .7), 6px 6px 8px rgba($color: #000000, $alpha: .4);
+}
+
+h1,
+h2,
+h3 {
+    font-family: $font-main-bold;
+}
+
+p {
+    color: $monster-grey;
+}
+
+#logo {
+    position: fixed;
+    left: 20px;
+    top: 50px;
+    width: 90px;
 }
 
 .page {
@@ -58,8 +79,7 @@ h1 {
     }
 
     h2 {
-        font-family: $font-main-bold;
-        font-size: 5vh;
+        font-size: 5vw;
         margin-bottom: 20px;
     }
 
@@ -70,7 +90,51 @@ h1 {
     }
 }
 
-// Section 3
+//Section 3
+.section.ingredients {
+    position: relative;
+    
+        .ingredient {
+            position: absolute;
+            width: 25%; 
+
+            h3 {
+                font-family: $font-main-italic;
+                font-size: 2vw;
+                margin-bottom: 30px;
+            }
+
+            p {
+                line-height: 1.5;
+            }
+        }
+
+        .ingredient:first-child,
+        .ingredient:last-child {
+            top: 40%;
+            width: 15%;
+        }
+
+        //First
+        .ingredient:first-child {
+            left: 15%;
+        }
+
+        //Second
+        .ingredient:nth-child(2){
+            bottom: 27%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        //Third
+        .ingredient:last-child {
+            right: 15%;
+        }
+
+}
+
+// Section 4
 .section.nutrition {
     display: flex;
     justify-content: center;
@@ -79,10 +143,15 @@ h1 {
 
     .left-side,
     .right-side {
-        height: 20vh;
+        height: 30vh;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+
+        .h3 {
+            font-family: $font-main-italic;
+            font-size: 1.5vw;
+        }
     }
 }
 
