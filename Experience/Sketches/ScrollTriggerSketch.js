@@ -18,19 +18,6 @@ export default class ScrollTriggerSketch extends EventEmitter {
 
         this.PI = Math.PI;
 
-        this.scrollAnimation = {
-            isAnimate: false,
-            currentSection: 0,
-        }
-
-        //Listen wheelEvent for scrollTO
-        window.addEventListener('wheel', (e) => {
-            if(!this.scrollAnimation.isAnimate) {
-                console.log('in on whele')
-                this.onWheel(e)
-            }
-        } );
-
     }
 
     setupAnimation() {
@@ -115,25 +102,8 @@ export default class ScrollTriggerSketch extends EventEmitter {
     resize() {
     }
 
-    onWheel(e) {
-        if(this.scrollAnimation.isAnimate) return;
-        
-        this.scrollAnimation.isAnimate = true;
-        
-        if(e.deltaY > 0 && this.scrollAnimation.currentSection < 5) this.scrollAnimation.currentSection += 1;
-        if(e.deltaY < 0 && this.scrollAnimation.currentSection > 0) this.scrollAnimation.currentSection -= 1;
-        
-        gsap.to(
-            window, 
-            { 
-                duration: 1, 
-                scrollTo:`#section${this.scrollAnimation.currentSection}`, 
-                onComplete: () => {
-                    console.log(this.scrollAnimation.isAnimate)
-                    this.scrollAnimation.isAnimate = false;  
-                } 
-            });
-        
+    onWheel() {
+       
     }
 
     //UPDATE

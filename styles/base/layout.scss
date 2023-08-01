@@ -20,6 +20,9 @@ body {
     }
 }
 
+/* --------------
+        PAGE
+-------------- */
 h1 {
     position: fixed;
     z-index: 1;
@@ -52,7 +55,12 @@ p {
     width: 90px;
 }
 
-.page {
+
+
+/* --------------
+        Sections
+-------------- */
+#slidesContainer {
 	position: relative;
 	z-index: 3;
 }
