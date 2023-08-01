@@ -51,7 +51,6 @@ export default class World extends EventEmitter {
 
             this.scrollTrigger = new ScrollTriggerSketch(this.models, this.views);
             this.scrollTrigger.setupAnimation();
-            
 
             this.emit("worldready");
         }); 

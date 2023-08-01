@@ -8,20 +8,29 @@ export default class Page {
     this.page = document.querySelector("#app");
     this.sectionListElements = document.querySelectorAll('.toolTip');
     this.sectionListTitle = document.querySelectorAll('.toolTip > div');
+
+    this.sectionTitle = document.querySelectorAll('[data-animation="title"]')
     
     splitText(this.sectionListTitle);
+    splitText(this.sectionTitle);
 
     this.scrollSections = {
       isScrolling: false,
       currentSection: 0,
     }
 
+    // Nav dots
     this.navDotsSection = {
       current: this.sectionListElements[this.scrollSections.currentSection]
     }
     this.handleToolTipActiveClass();
 
     this.addEventListeners();
+
+    //Gsap Animations
+    this.sectionOneAnimation();
+    this.sectionTwoAnimation();
+    this.sectionThreeAnimation();
   }
 
   /**
@@ -57,8 +66,116 @@ export default class Page {
     );
   }
 
-  // Events
+  //SECTION GSAP ANIMATION
 
+  /**
+   * Section 1
+   */
+  sectionOneAnimation() {
+    //Title
+    const sectionTitle = document.querySelector('#section1 [data-animation="title"]')
+    sectionTitle.querySelectorAll('span').forEach(char => {
+      gsap.from(char, {
+           scrollTrigger: {
+               trigger: char,
+           },
+           duration: .8,
+           delay: gsap.utils.random(.3, .5),
+           autoAlpha: 0,
+           x:-100
+      }) 
+    }) 
+
+    //Paragraph
+    gsap.from("#section1 p", {
+      scrollTrigger: {
+          trigger: "#section1 p",
+      },
+      duration: .8,
+      delay: .6,
+      autoAlpha: 0,
+      x:-40
+    })
+  }
+
+  /**
+   * Section 2
+   */
+  sectionTwoAnimation() {
+    //Title
+    const sectionTitle = document.querySelectorAll('#section2 [data-animation="title"]')
+    sectionTitle.forEach(title => {
+      title.querySelectorAll('span').forEach(char => {
+        gsap.from(char, {
+            scrollTrigger: {
+                trigger: char,
+            },
+            duration: .8,
+            delay: gsap.utils.random(.1, .4),
+            autoAlpha: 0,
+            y:50
+        }) 
+      }) 
+    })
+
+    //Paragraph
+    gsap.from("#section2 p", {
+      scrollTrigger: {
+          trigger: "#section2 p",
+      },
+      duration: .8,
+      delay: .8,
+      autoAlpha: 0,
+      y:-40
+    })
+  }
+
+  /**
+   * Section 3
+   */
+  sectionThreeAnimation() {
+    //Left Side
+    gsap.from("#section3 .left-side li .h3", {
+      scrollTrigger: {
+          trigger: "#section3 .left-side li",
+      },
+      duration: .8,
+      delay: .8,
+      autoAlpha: 0,
+      x:100
+    })
+
+    gsap.from("#section3 .left-side li .info", {
+      scrollTrigger: {
+          trigger: "#section3 .left-side li",
+      },
+      duration: .8,
+      delay: 1.5,
+      autoAlpha: 0,
+    })
+
+    //Right Side
+    gsap.from("#section3 .right-side li .h3", {
+      scrollTrigger: {
+          trigger: "#section3 .right-side li",
+      },
+      duration: .8,
+      delay: .8,
+      autoAlpha: 0,
+      x:-100
+    })
+
+    gsap.from("#section3 .right-side li .info", {
+      scrollTrigger: {
+          trigger: "#section3 .right-side li",
+      },
+      duration: .8,
+      delay: 1.5,
+      autoAlpha: 0,
+    })
+  }
+
+  // Events
   onResize() {
    
   }

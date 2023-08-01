@@ -1,6 +1,8 @@
 import Experience from '../Experience';
+
 import { EventEmitter } from "events";
 import {gsap} from 'gsap';
+
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { ScrollTrigger} from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
@@ -14,10 +16,9 @@ export default class ScrollTriggerSketch extends EventEmitter {
         this.shadow = this.experience.world.customShadowedFloor.floor;
 
         this.models = models;
-        this.views = views
+        this.views = views;
 
         this.PI = Math.PI;
-
     }
 
     setupAnimation() {
@@ -95,8 +96,6 @@ export default class ScrollTriggerSketch extends EventEmitter {
         section += 1
         tl.to(this.views[1], {height: 1, ease: 'linear'}, section)
     }
-
-
 
     //RESIZE
     resize() {

@@ -48,6 +48,14 @@ p {
     color: $monster-grey;
 }
 
+[data-word][data-animation="title"] {
+    overflow-y: hidden;
+
+    span {
+        display: inline-block;
+    }
+}
+
 #logo {
     position: fixed;
     left: 20px;
@@ -68,7 +76,7 @@ p {
 .section {
     width: 100vw;
     height: 100vh;
-    outline: 1px solid red;
+    //outline: 1px solid red;
 }
 
 // Section 1
@@ -155,11 +163,19 @@ p {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        overflow: hidden;
 
-        .h3 {
-            font-family: $font-main-italic;
-            font-size: 1.5vw;
+        li {
+            span {
+                display: inline-block;
+            }
+
+            span.h3 {
+                font-family: $font-main-italic;
+                font-size: 1.5vw;
+            }
         }
+
     }
 }
 
