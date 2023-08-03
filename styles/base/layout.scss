@@ -1,5 +1,16 @@
 body {
     background-color: #e0e5eb;
+    //IE / Edge
+    -ms-overflow-style: none;
+}
+
+//Firefox
+html {
+    scrollbar-width: none;
+}
+// Chrome / Safari
+body::-webkit-scrollbar{
+    display: none; 
 }
 
 .webgl {

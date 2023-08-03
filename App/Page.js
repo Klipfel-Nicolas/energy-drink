@@ -31,6 +31,19 @@ export default class Page {
     this.sectionOneAnimation();
     this.sectionTwoAnimation();
     this.sectionThreeAnimation();
+
+  }
+
+  /**
+   * Get the scroll position percent
+   */
+  getScrollPercent() {
+    let h = document.documentElement, 
+        b = document.body,
+        st = 'scrollTop',
+        sh = 'scrollHeight';
+        
+    return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
   }
 
   /**
@@ -49,7 +62,6 @@ export default class Page {
    * Gsap scrollTo animation
    */
    scrollToAnimation() {
-    console.log('current section: ', this.scrollSections.currentSection)
 
     this.scrollSections.isScrolling = true;
     this.handleToolTipActiveClass();
@@ -223,6 +235,14 @@ export default class Page {
     if(e.target.classList.contains('hover')) e.target.classList.remove('hover');;
   }
 
+  /**
+   * Handle dinamic scroll distance
+   */
+  handleScrollDistance() {
+    const scrollDist = document.querySelector('.scroll-distance');
+    scrollDist.style.height = `${this.getScrollPercent()}%`
+  }
+
   // Loop
 
   update() {
@@ -236,8 +256,12 @@ export default class Page {
     this.onListElementClick = this.onCLickSection.bind(this);
     this.onNavDotEnter = this.onNavDotHover.bind(this);
     this.onNavDotLeaved = this.onNavDotLeave.bind(this);
+    this.onScroll = this.handleScrollDistance.bind(this);
     
     this.page.addEventListener('wheel', this.onMouseWheelEvent);
+    document.addEventListener('scroll', this.onScroll);
+
+    
 
     this.sectionListElements.forEach(element => {
       element.addEventListener('click', this.onListElementClick);
