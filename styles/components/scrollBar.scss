@@ -2,15 +2,15 @@
     position: fixed;
     top: 15vh;
     right: 5vw;
-    height: 70vh;
+    height: 60vh;
   
 
   .arrow {
     cursor: pointer;
     margin: 0 auto;
     padding: 10px;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     border: 1px solid $grey-6;
     border-radius: 100%;
     box-shadow: -3px -1px 6px rgba($color: #ffffff, $alpha: .7), 3px 2px 9px rgba($color: #000000, $alpha: .4);
@@ -24,22 +24,52 @@
   .scroll-bar__container {
     position: relative;
     height: calc(100% - 70px);
+    margin: 60px auto;
 
     .scroll-length {
         position: absolute;
-        top: 10%;
+        top: 0;
         left: 50%;
         width: 1px;
-        height: 80%;
+        height: 100%;
         background-color: $grey-6;
     }
 
     .scroll-distance {
         position: absolute;
-        top: 10%;
+        top: 0;
         left: 50%;
         width: 1px;
         background-color: $monster-blue;
     }
   }
+}
+
+#scroll-distance {
+    position: fixed;
+    top: 10vh;
+    right: 5vw;
+    height: 80vh;
+
+    .scroll-distance__container {
+        position: relative;
+        height: 100%;
+
+        .bg {
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            width: .5px;
+            background-color: $monster-blue /* $grey-6 */;
+        }
+       p {
+            height: 100%;
+            text-align: center;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+            font-family: $font-main-bold;
+            font-size: 2rem;
+            color: #e0e5eb;
+        } 
+    }
 }

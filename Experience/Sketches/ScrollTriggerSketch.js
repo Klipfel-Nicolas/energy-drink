@@ -50,7 +50,6 @@ export default class ScrollTriggerSketch extends EventEmitter {
                 end: "bottom bottom",
                 scrub: .5, //Smoother animation
                 snap: 1/5, // Auto scroll dived
-                markers: true,
                 onUpdate: () => {
                 }
             }
@@ -90,11 +89,21 @@ export default class ScrollTriggerSketch extends EventEmitter {
         
         //Section 4
         section += 1
-        tl.to(this.models.rotation, {y: 0, ease: "power1.in"}, section)
+        tl.to(this.models.rotation, {y: -.4, ease: "power1.in"}, section)
+        
+        tl.to(this.models.position, {x: 2, ease: "power1.in"}, section)
+        tl.to(this.models.position, {z: -.4, ease: "power2.in"}, section)
         
         //Section 5
         section += 1
-        tl.to(this.views[1], {height: 1, ease: 'linear'}, section)
+        
+        tl.to(this.models.rotation, {y: Math.PI * 2 + .8, ease: "linear"}, section)
+        tl.to(this.views[1], {height: 1, ease: 'linear' }, section)
+        
+        tl.to(this.models.position, {z: 0, ease: "linear"}, section)
+        tl.to(this.models.position, {x: -3, ease: "linear"}, section)
+        tl.to("body", {backgroundColor: '#000000', ease:'power2.in'}, section)
+        tl.to(".scroll-distance__container .bg", {backgroundColor: '#6AD41A', ease:'power2.in'}, section)
     }
 
     //RESIZE

@@ -10,7 +10,6 @@
 
 
     <div id="app" class="">
-
       
       <!-- Loader -->
       <div class="loader">loader</div>
@@ -37,16 +36,16 @@
             <div>Nutrition</div>
           </li>
           <li class="toolTip" data-section="4" data-animation="wave">
-            <div>Presentation</div>
+            <div>Ultra</div>
           </li>
           <li class="toolTip" data-section="5" data-animation="wave">
-            <div>Black</div>
+            <div>Original</div>
           </li>
         </ul>
       </nav>
 
       <!-- Arrows / Scroll-distance -->
-      <div id="scroll-bar">
+      <!-- <div id="scroll-bar">
           <object id="arrow-up" class="arrow" data="/images/down-arrow.svg"></object>
           <div class="scroll-bar__container">
             <div class="scroll-length"></div>
@@ -54,6 +53,13 @@
           </div>
           
           <object id="arrow-down" class="arrow" data="/images/down-arrow.svg"></object>
+      </div> -->
+
+      <div id="scroll-distance">
+        <div class="scroll-distance__container">
+          <p>UNLEASH THE BEAST</p>
+        </div>
+        
       </div>
 
       <!-- Page -->
@@ -110,27 +116,85 @@
           <section id="section3" class="section nutrition">
 
             <ul class="left-side">
-              <li><span class="h3">Energie </span>	<span class="info">50kj - 11kcal (1%)</span></li>
-              <li><span class="h3">Glucides </span>	<span class="info">4.4g (2%)</span></li>
-              <li><span class="h3">Sucres </span>	<span class="info">0g (0%)</span></li>
+              <li><span class="h3">Energie -</span> 	<span class="info">50kj - 11kcal (1%)</span></li>
+              <li><span class="h3">Glucides -</span> 	<span class="info">4.4g (2%)</span></li>
+              <li><span class="h3">Sucres -</span> 	<span class="info">0g (0%)</span></li>
             </ul>
 
             <ul class="right-side">
-              <li><span class="h3">Vitamine B12 </span>	<span class="info">2.5µg (100%) 13µg (500%)</span></li>
-              <li><span class="h3">Vitamine B6 </span>	<span class="info">0.8mg (57%) 4.0mg (286%)</span></li>
-              <li><span class="h3">Vitamine B5 </span>	<span class="info">4.2mg (70%) 21mg (350%)</span></li>
+              <li><span class="h3">Vitamine B12 -	</span> <span class="info">2.5µg (100%) 13µg (500%)</span></li>
+              <li><span class="h3">Vitamine B6 - </span> <span class="info">0.8mg (57%) 4.0mg (286%)</span></li>
+              <li><span class="h3">Vitamine B5 - </span> <span class="info">4.2mg (70%) 21mg (350%)</span></li>
             </ul>
           </section>
 
-          <section id="section4" class="section">
-            <h2>Section 4.</h2>
+          <section id="section4" class="section monster_ultra">
+            
+            <div class="presentation__flavour">
+              <p>Léger, rafraichissant avec une touche de citron.</p>
+            </div>
+            
+            <div class="presentation__cannette">
+              <h3>Qu'y a t-il dans une canette</h3>
+
+              <div class="table-container">
+                <div class="table">
+                  <div class="t-head">Energie</div>
+                  <div class="t-body">50kj - 11kcal</div>
+                  <div class="t-footer">1%</div>
+                </div>
+                <div class="table">
+                  <div class="t-head">Sucres</div>
+                  <div class="t-body">0g</div>
+                  <div class="t-footer">0%</div>
+                </div>
+                <div class="table">
+                  <div class="t-head">Glucides</div>
+                  <div class="t-body">4.4g</div>
+                  <div class="t-footer">2%</div>
+                </div>
+              </div>
+              
+              <p>150MG DE CAFÉINE</p>
+            </div>
+
+
           </section>
 
           <section id="section5" class="section monster_original">
-            <h2>Section 5</h2>
+            
+            <div class="presentation__flavour">
+              <p>Sucré et puissant - le goût de la Monster!</p>
+            </div>
+            
+            <div class="presentation__cannette">
+              <h3>Qu'y a t-il dans une canette</h3>
+
+              <div class="table-container">
+                <div class="table">
+                  <div class="t-head">Energie</div>
+                  <div class="t-body">778kj - 183kcal</div>
+                  <div class="t-footer">9%</div>
+                </div>
+                <div class="table">
+                  <div class="t-head">Sucres</div>
+                  <div class="t-body">42g</div>
+                  <div class="t-footer">47%</div>
+                </div>
+                <div class="table">
+                  <div class="t-head">Glucides</div>
+                  <div class="t-body">47g</div>
+                  <div class="t-footer">18%</div>
+                </div>
+              </div>
+              
+              <p>160MG DE CAFÉINE</p>
+            </div>
           </section>
 
       </main>
+
+      <div id="license">© Monster Energy Company - All Rights Reserved</div>
 
       <!-- WebGl -->
       <canvas class="webgl"></canvas>

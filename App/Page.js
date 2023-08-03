@@ -25,6 +25,9 @@ export default class Page {
     }
     this.handleToolTipActiveClass();
 
+    //Scroll distance
+    this.setScrollDistanceBackground(10);
+
     this.addEventListeners();
 
     //Gsap Animations
@@ -42,8 +45,26 @@ export default class Page {
         b = document.body,
         st = 'scrollTop',
         sh = 'scrollHeight';
-        
     return (h[st]||b[st]) / ((h[sh]||b[sh]) - h.clientHeight) * 100;
+  }
+
+  /**
+   * Set bg barres for scroll distance
+   * @param {number} bgCounts 
+   */
+  setScrollDistanceBackground(bgCounts) {
+    const container = document.querySelector('.scroll-distance__container');
+
+    for (let i = 0; i <= bgCounts; i++) {
+      let bgDiv = document.createElement('div');
+      bgDiv.classList.add('bg');
+
+      //To avoid space right and left from text
+      bgDiv.style.left = i < 6 ? `${i* (100/bgCounts) + 20}%` : `${i* (100/bgCounts) - 20}%`;
+      bgDiv.style.transform = `translateY(${1 - Math.random() * (20 - 1)}px)`;
+      
+      container.appendChild(bgDiv);
+    }
   }
 
   /**
@@ -57,8 +78,8 @@ export default class Page {
     this.navDotsSection.current.classList.add('active')
   }
 
-
-   /**
+  //SECTION GSAP ANIMATION
+  /**
    * Gsap scrollTo animation
    */
    scrollToAnimation() {
@@ -77,9 +98,6 @@ export default class Page {
       }
     );
   }
-
-  //SECTION GSAP ANIMATION
-
   /**
    * Section 1
    */
@@ -239,8 +257,16 @@ export default class Page {
    * Handle dinamic scroll distance
    */
   handleScrollDistance() {
-    const scrollDist = document.querySelector('.scroll-distance');
-    scrollDist.style.height = `${this.getScrollPercent()}%`
+    /* Scroll Bar vertion */
+    //const scrollDist = document.querySelector('.scroll-distance');
+    //scrollDist.style.height = `${this.getScrollPercent()}%`
+
+    const bgArray = document.querySelectorAll('.scroll-distance__container .bg');
+
+    bgArray.forEach(bg=> {
+      bg.style.height = `${this.getScrollPercent()}%`
+    })
+    
   }
 
   // Loop

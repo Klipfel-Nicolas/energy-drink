@@ -74,7 +74,13 @@ p {
     width: 90px;
 }
 
-
+#license {
+    position: fixed;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    color: $grey-5;
+}
 
 /* --------------
         Sections
@@ -184,12 +190,119 @@ p {
             span.h3 {
                 font-family: $font-main-italic;
                 font-size: 1.5vw;
+                margin-right: 20px;
+            }
+
+            span.info {
+                font-size: .8rem;
+                color: $grey-4;
             }
         }
 
     }
 }
 
+.section.monster_ultra,
+.section.monster_original {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30%;
+
+    .presentation {
+        &__flavour {
+            margin-bottom: 50px;
+
+            h3 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-family: $font-special-odachi;
+                font-size: 2rem;
+            }
+        }
+
+        &__cannette {
+            h3 {
+                font-size: 2rem;
+                margin-bottom: 25px;
+            }
+
+            .table-container {
+                display: flex;
+                gap: 15px;
+                margin-bottom: 25px;
+
+                .table {
+                    flex: 1;
+                    max-width: 100px;
+                    padding: 15px;
+                    text-align: center;
+                    border-radius: 15px;
+                    background: #e0e5eb;
+                    
+                    .t-head {
+                        font-family: $font-main-italic;
+                    }
+
+                    .t-body {
+                        margin: 10px 0;
+                        font-family: $font-main-bold;
+                        font-size: 1.4rem;
+                    }
+
+                    .t-footer {
+                        font-size: .8rem;
+                        color: $grey-4;
+                    }
+                }
+            }
+
+            p {
+                font-size: 1.3rem;
+                font-family: $font-special-odachi;
+            }
+        }
+    }
+}
+
+.section.monster_ultra {
+    margin: 0 20%;
+
+    .presentation {
+        &__flavour p{
+            color: $monster-blue;
+        }
+    
+        &__cannette{
+            .table {
+                box-shadow: 4px 5px 4px 0px #caced4, -4px -4px 6px #f6fcff;
+
+                .t-body {
+                    color: $monster-blue;
+                }  
+            }
+                  
+        }
+    }
+}
+
 // Section 5
 .section.monster_original {
+    margin-right: 20%;
+    margin-left: auto;
+
+    .presentation {
+        &__flavour p{
+            color: $monster-green-medium;
+        }
+    
+        &__cannette{
+
+            .t-body {
+                color: $monster-green-medium;
+            }        
+        }
+    }
 }

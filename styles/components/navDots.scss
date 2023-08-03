@@ -72,6 +72,18 @@ nav {
                 transform:translateY(-50%) scale(1)  ;
             }
         }
+
+        .toolTip:last-child {
+            &.active {
+                span {
+                  color: $monster-green-medium;  
+                }
+                
+                &::after {
+                    background-color: $monster-green-medium;
+                }
+            }
+        }
     }
 }
 
