@@ -1,8 +1,9 @@
 # Three.js Energy drinks model site
 
 ## Improve
-- Find a way to avoid time before snaping section on scroll (look BackUp folder)
 - Handle resize and mobile
+- Little bug sometimes with snaping scroll(go to next section auto)
+- Not good section displayed on refresh page
 
 ## Setup
 Run this followed commands:
